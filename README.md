@@ -7,6 +7,7 @@ You can see the scenario in the following diagram.
 <p><img src="lms-diagram.png" alt="diagram"></p>
 
 - You can specify the year report in input, by default it gets the current year for calculation.
+- You should specify destination report file in input, it is a mandatory field.
 
 ## Under the Hood
 - Knowing real-world projects demand better code quality and organization. While working on it, I aimed to keep things neat and tidy, focusing on making different parts work together smoothly. To do this, I tried to use abstractions to decouple the objects.
@@ -20,6 +21,9 @@ Also, I used custom **Exceptions** to handle the errors and exceptions in a more
 
 
 - For final result, I created dynamic exporter, for now we have CSV exporter, but because of the dynamic logic and factory pattern we can have different export types(e.g. json, xml) in future if needed.
+
+
+- I used repository interface and injected it to the calculator service, by doing so, I tried to leverage loosely couple dependency between service and repository, which we can easily change the repository without modifying the service.
 
 
 - Due to time of the task, I didn't use any statically type checkers like PHPStan, Cs fixer, etc., but for real project we need to use these tools.
