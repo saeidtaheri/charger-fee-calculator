@@ -73,7 +73,7 @@ I used php fpm 8.3 with nginx in docker environment
 
 10. Run The App
     - if you don't specify the year, it automatically gets current year for calculation
-    - Report will be generated in src/Reports directory.
+    - Report will be generated in specified directory, here it will in `reports` directory.
     ````bash
     php bin/console report:yearly-charger-fee --file=reports/yearly_charger_fees 
     php bin/console report:yearly-charger-fee --file=reports/yearly_charger_fees --year=2025
