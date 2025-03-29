@@ -6,5 +6,4 @@ namespace App\ChargingStation;
 interface ChargingStationInterface
 {
     public function calculateFee(float $kWh): float;
-//    public function getType(): string;
 }

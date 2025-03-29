@@ -26,7 +26,7 @@ final readonly class ChargerFeeCalculatorService
             for ($month = 1; $month <= 12; $month++) {
                 $usage = $this->calculateCustomerMonthlyUsageInKWH($customer);
                 $monthlyFee = $this->calculateCustomerMonthlyFee($customer, $usage, $month, $year);
-                $paymentDate = $this->getCustomerPaymentDate($month, $year);
+                $paymentDate = $this->getFirstMondayOfNextMonth($month, $year);
                 $result[] = [
                     'Customer' => $customer->getName(),
                     'Charging Station' => $customer->getChargingStation(),
@@ -68,7 +68,7 @@ final readonly class ChargerFeeCalculatorService
         int   $year
     ): float
     {
-        $totalDays = (new DateTime("$year-$month-01"))->format('t');
+        $totalDays = (new DateTime("$year-$month"))->format('t');
 
         $workingDays = 0;
         for ($day = 1; $day <= $totalDays; $day++) {
@@ -81,11 +81,12 @@ final readonly class ChargerFeeCalculatorService
         return ($monthlyUsage / $totalDays) * $workingDays;
     }
 
-    private function getCustomerPaymentDate(int $month, int $year): string
+    private function getFirstMondayOfNextMonth(int $month, int $year): string
     {
-        $firstMonday = new DateTime("first Monday of $year-$month");
+        $date = new DateTime("$year-$month");
+        $date->modify('first Monday of next month');
 
-        return $firstMonday->format('Y-m-d');
+        return $date->format('Y-m-d');
     }
 
     private function getChargingStation(Customer $customer): ChargingStationInterface

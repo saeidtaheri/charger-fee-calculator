@@ -42,6 +42,6 @@ class ChargerFeeCalculatorServiceTest extends TestCase
         $this->assertSame('E-moped Charger', $result[0]['Charging Station']);
         $this->assertSame($result[0]['kWh Usage p/m'], 57.6);
         $this->assertSame($result[0]['Fee'], 1.41);
-        $this->assertSame($result[0]['Payment Date'], '2025-01-06');
+        $this->assertSame($result[0]['Payment Date'], '2025-02-03');
     }
 }

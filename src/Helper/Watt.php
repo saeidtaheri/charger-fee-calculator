@@ -2,13 +2,10 @@
 
 namespace App\Helper;
 
-final class Watt
+final readonly class Watt
 {
-    private float $watts;
-
-    public function __construct(float $watts) {
-        $this->watts = $watts;
-    }
+    public function __construct(private float $watts)
+    {}
 
     public function toKilowatts(): float {
         return $this->watts / 1000;
